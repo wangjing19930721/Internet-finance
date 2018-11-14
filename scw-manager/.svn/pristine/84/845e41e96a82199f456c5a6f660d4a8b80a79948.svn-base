@@ -1,0 +1,71 @@
+package com.atguigu.scw.manager.controller.permission;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.atguigu.scw.manager.bean.TUser;
+import com.atguigu.scw.manager.constant.Constants;
+import com.atguigu.scw.manager.service.UserService;
+
+@RequestMapping("/permission/user")
+@Controller
+public class UserController {
+
+    private final String MANAGER_MAIN = "manager/main";
+    @Autowired
+    UserService userService;
+
+    @RequestMapping("/login")
+    public String login(TUser user,HttpSession session) {
+
+        TUser login = userService.login(user);
+        if (login == null) {
+            //登陆失败
+            session.setAttribute("errorUser", user);
+            session.setAttribute("msg", "登陆失败");
+            return "redirect:/login.jsp";
+        }
+        
+        //登陆成功！
+        //1、将用户放在session域中
+        session.setAttribute(Constants.LOGIN_USER, login);
+        return "redirect:/main.html";
+    }
+
+    /**
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @return
+     */
+    @RequestMapping("/reg")
+    public String reg(TUser user, Model model, HttpSession session) {
+        // TUser [id=null, loginacct=aaaaaa, userpswd=123456, username=null, email=aaa@163.com, createtime=null]
+        // System.out.println("用户注册..."+user);
+        // 1、注册用户；
+        boolean flag = userService.register(user);
+        // 注册成功
+        if (flag) {
+
+            // 1、公司用户注册成功来到后台的控制面板
+            // 1、把这个用户重新获取查出来放在session中
+            // 2、我们采取的方式，用户保存的数据在user对象中，id是数据库生成的自增主键
+            // 3、需要修改mybatis的mapper文件，让其使用自动生成的id
+
+            session.setAttribute(Constants.LOGIN_USER, user);
+
+            return "redirect:/main.html";
+        } else {
+            // 2、注册失败
+            model.addAttribute("regError", "用户名已经被使用");
+            // 3、来到页面要回显user之前输入的内容
+            // 4、user先从隐含模型中拿的；只要是pojo，确定完值以后会自动的放在隐含模型中；
+            // 用的key是类名首字母小写 ${tUser.loginacct}
+            return "forward:/reg.jsp";
+        }
+
+    }
+
+}

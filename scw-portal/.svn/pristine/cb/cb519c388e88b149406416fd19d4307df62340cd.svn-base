@@ -1,0 +1,70 @@
+package com.atguigu.scw.portal.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+/**
+ * 实名认证的控制器
+ * @ClassName AuthController
+ * @Description TODO(这里用一句话描述这个类的作用)
+ * @author lfy
+ * @Date 2017年7月18日 上午9:21:14
+ * @version 1.0.0
+ */
+@Controller
+@RequestMapping("/auth")
+public class AuthController {
+    
+    @RequestMapping("/success.html")
+    public String authSucces(){
+        return "member/success";
+    }
+    
+    @RequestMapping("/apply-3.html")
+    public String toApply3(){
+        return "member/apply-3";
+    }
+    
+    /**
+     * 来到填写邮箱页面；
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @return
+     */
+    @RequestMapping("/apply-2.html")
+    public String toApply2(){
+        return "member/apply-2";
+    }
+    
+    /**
+     * 来到选择资质页面，同时也是完成了基本信息的录入
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @return
+     */
+    @RequestMapping("/apply-1.html")
+    public String toApply1(){
+        return "member/apply-1";
+    }
+    
+    /**
+     * 来到输入基本信息页面
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @return
+     */
+    @RequestMapping("/apply.html")
+    public String toApply(){
+        
+        return "member/apply";
+    }
+    
+    /**
+     * 
+     * @Description (完成账户类型选择，来到输入基本信息页面)
+     * @return
+     */
+//    @RequestMapping("/checktype.html")
+//    public String finishCheckAccountType(){
+//        return "redirect:/auth/apply.html";
+//    }
+
+}

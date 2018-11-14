@@ -1,0 +1,41 @@
+package com.atguigu.scw.restapi.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.atguigu.project.MD5Util;
+import com.atguigu.scw.manager.bean.TMemeber;
+import com.atguigu.scw.manager.dao.TMemeberMapper;
+import com.atguigu.scw.restapi.service.MemberService;
+
+
+@Service
+public class MemberServiceImpl implements MemberService {
+    
+    @Autowired
+    TMemeberMapper memeberMapper;
+
+    @Override
+    public TMemeber regist(TMemeber tMemeber) {
+        // TODO Auto-generated method stub
+        String digest = MD5Util.digest(tMemeber.getUserpswd());
+        //加密密码保存
+        tMemeber.setUserpswd(digest);
+        //初始化用户名和账号
+        tMemeber.setUsername(tMemeber.getLoginacct());
+        //实名认证状态  0:未实名认证  1::实名认证
+        tMemeber.setAuthstatus("0");
+        //真实姓名；实名认证是保存的
+        tMemeber.setRealname("未实名");
+        // 0：普通会员    1：月费会员  2：年费会员   3：
+        tMemeber.setUsertype("0");
+        //身份证号，账户类型；（实名认证是做的）
+        //账户类型：直接保存账户的全名
+        
+        int i = memeberMapper.insertSelective(tMemeber);
+        
+        //刚才就是按照这个对象给数据库插入值，希望获取到数据库分配的自增主键
+        return tMemeber;
+    }
+
+}

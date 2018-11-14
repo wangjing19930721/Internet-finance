@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<%@include file="/WEB-INF/includes/css-file.jsp"%>
+<link rel="stylesheet" href="${ctp}/css/theme.css">
+<%@include file="/WEB-INF/includes/js-file.jsp" %>
+<style>
+#footer {
+	padding: 15px 0;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<%@include file="/WEB-INF/includes/nav-bar.jsp"%>
+
+	<div class="container theme-showcase" role="main">
+		<div class="page-header">
+			<h1>实名认证 - 申请</h1>
+		</div>
+		<%@include file="/WEB-INF/includes/auth-li.jsp" %>
+		<form role="form" style="margin-top: 20px;">
+			<div class="form-group">
+				<label for="exampleInputEmail1">邮箱地址</label> <input type="text"
+					class="form-control" id="exampleInputEmail1"
+					placeholder="请输入用于接收验证码的邮箱地址">
+			</div>
+			<button type="button" onclick="window.location.href='${ctp}/auth/apply-1.html'"
+				class="btn btn-default">上一步</button>
+			<button type="button" onclick="window.location.href='${ctp}/auth/apply-3.html'"
+				class="btn btn-success">下一步</button>
+		</form>
+		<hr>
+	</div>
+	<!-- /container -->
+	<div class="container" style="margin-top: 20px;">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div id="footer">
+					<div class="footerNav">
+						<a rel="nofollow" href="${ctp}/http://www.atguigu.com">关于我们</a> |
+						<a rel="nofollow" href="${ctp}/http://www.atguigu.com">服务条款</a> |
+						<a rel="nofollow" href="${ctp}/http://www.atguigu.com">免责声明</a> |
+						<a rel="nofollow" href="${ctp}/http://www.atguigu.com">网站地图</a> |
+						<a rel="nofollow" href="${ctp}/http://www.atguigu.com">联系我们</a>
+					</div>
+					<div class="copyRight">Copyright ?2017-2017atguigu.com 版权所有</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script>
+		$('#myTab a').click(function(e) {
+			e.preventDefault()
+			$(this).tab('show')
+		});
+		currPageActive('邮箱确认');
+	</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+package com.atguigu.scw.manager.service;
+
+
+
+public interface UserService {
+    
+
+}

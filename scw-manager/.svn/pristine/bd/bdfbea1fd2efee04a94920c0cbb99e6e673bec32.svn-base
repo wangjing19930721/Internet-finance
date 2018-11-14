@@ -1,0 +1,23 @@
+package com.atguigu.scw.manager.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.atguigu.scw.manager.bean.User;
+import com.atguigu.scw.manager.dao.UserMapper;
+import com.atguigu.scw.manager.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService{
+    
+    @Autowired
+    UserMapper userMapper;
+
+    @Override
+    public User getUserById(Integer id) {
+        // TODO Auto-generated method stub
+        
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+}

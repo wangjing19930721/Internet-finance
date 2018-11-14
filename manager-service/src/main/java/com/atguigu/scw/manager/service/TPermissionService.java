@@ -1,0 +1,23 @@
+package com.atguigu.scw.manager.service;
+
+import java.util.List;
+
+import com.atguigu.scw.manager.bean.TPermission;
+
+
+public interface TPermissionService {
+    
+    /**
+     * 获取到所有菜单
+     * @Description (TODO这里用一句话描述这个方法的作用)
+     * @return
+     */
+    public List<TPermission> getAllMenus();
+    
+    public List<TPermission> getPermissions();
+
+    public List<TPermission> getRolePermission(Integer rid);
+
+    public boolean updatePermission(String pids, Integer rid);
+
+}

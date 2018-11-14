@@ -1,0 +1,35 @@
+package com.atguigu.scw.portal.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.atguigu.scw.manager.bean.TMemeber;
+
+
+/**
+ * 帮我们去调用restapi层的接口；
+ * 
+ * @ClassName MemberController
+ * @Description TODO(这里用一句话描述这个类的作用)
+ * @author lfy
+ * @Date 2017年7月15日 下午5:08:12
+ * @version 1.0.0
+ */
+@RequestMapping("/member")
+@Controller
+public class MemberController {
+
+    @RequestMapping("/regist")
+    public String regist(TMemeber memeber){
+        //需要利用http工具去模拟发调用接口的请求
+        //http://localhost:8082/scw-restapi/member/regist
+        //  <httpclient.version>4.5.3</httpclient.version>
+        //httpclient使用java代码来模拟发送请求
+        //能收到api调用后产生的json数据；
+        //1、可以将产生的json逆向成对象ScwReturn<TMemeber>
+        //2、可以直接将json写给页面
+        
+        //注册成功以后可以来到一个页面；
+        return "forward:/index.jsp";
+    }
+}

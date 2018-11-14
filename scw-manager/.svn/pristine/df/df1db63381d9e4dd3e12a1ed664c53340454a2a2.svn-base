@@ -1,0 +1,14 @@
+package com.atguigu.scw.manager.service;
+
+import com.atguigu.scw.manager.bean.TUser;
+
+
+
+public interface UserService {
+
+    boolean register(TUser user);
+
+    TUser login(TUser user);
+    
+
+}

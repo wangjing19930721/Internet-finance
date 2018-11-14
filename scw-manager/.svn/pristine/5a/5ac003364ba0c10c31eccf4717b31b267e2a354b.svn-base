@@ -1,0 +1,10 @@
+package com.atguigu.scw.manager.service;
+
+import com.atguigu.scw.manager.bean.User;
+
+
+public interface UserService {
+    
+    public User getUserById(Integer id);
+
+}
